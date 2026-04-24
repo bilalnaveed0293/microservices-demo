@@ -18,7 +18,7 @@ spec:
         image: gcr.io/google-samples/microservices-demo/frontend:v0.10.1
         ports:
         - containerPort: 8080
-        env:
+       env:
         - name: PRODUCT_CATALOG_SERVICE_ADDR
           value: "productcatalogservice:3550"
         - name: CURRENCY_SERVICE_ADDR
@@ -37,6 +37,8 @@ spec:
           value: "emailservice:5000"
         - name: ENABLE_PROFILER
           value: "0"
+        - name: SHOPPING_ASSISTANT_SERVICE_ADDR
+          value: ""
 ---
 apiVersion: v1
 kind: Service
