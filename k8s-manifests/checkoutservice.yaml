@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: checkoutservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: checkoutservice
+  template:
+    metadata:
+      labels:
+        app: checkoutservice
+    spec:
+      containers:
+      - name: checkoutservice
+        image: gcr.io/google-samples/microservices-demo/checkoutservice:v0.10.1
+        ports:
+        - containerPort: 5050
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: checkoutservice
+spec:
+  selector:
+    app: checkoutservice
+  ports:
+  - port: 5050
+    targetPort: 5050
