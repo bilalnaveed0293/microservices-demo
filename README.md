@@ -167,4 +167,26 @@ Find **Protocol Buffers Descriptions** at the [`./protos` directory](/protos).
 - [Google Cloud Next'18 London – Keynote](https://youtu.be/nIq2pkNcfEI?t=3071)
   showing Stackdriver Incident Response Management
 - [Microservices demo showcasing Go Micro](https://github.com/go-micro/demo)
-# My Deployment
+# Project 3: Multi-Tier App Deployment
+
+## Codebase
+Google Online Boutique — 10 microservices e-commerce app
+
+## Tech Stack
+Docker | Terraform | Ansible | k3s | ArgoCD | GitHub Actions
+
+## Infrastructure
+- EC2 t3.small on AWS (IP: 3.227.23.204)
+- VPC + Security Groups via Terraform
+
+## Deployment Steps
+1. Dockerfiles written for all 10 microservices
+2. Terraform provisions EC2 on AWS
+3. Ansible installs k3s on EC2
+4. Kubernetes manifests in k8s-manifests/ folder
+5. ArgoCD syncs manifests from main branch automatically
+6. GitHub Actions builds and pushes Docker images on every push
+
+## Access
+- App: http://3.227.23.204:30080
+- ArgoCD: https://3.227.23.204:ARGOCD_PORT
