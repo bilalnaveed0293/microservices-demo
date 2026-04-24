@@ -1,0 +1,88 @@
+name: CI - Build and Push Docker Images
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push frontend
+        uses: docker/build-push-action@v5
+        with:
+          context: ./src/frontend
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/frontend:${{ github.sha }}
+
+      - name: Build and push cartservice
+        uses: docker/build-push-action@v5
+        with:
+          context: ./src/cartservice
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/cartservice:${{ github.sha }}
+
+      - name: Build and push productcatalogservice
+        uses: docker/build-push-action@v5
+        with:
+          context: ./src/productcatalogservice
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/productcatalogservice:${{ github.sha }}
+
+      - name: Build and push currencyservice
+        uses: docker/build-push-action@v5
+        with:
+          context: ./src/currencyservice
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/currencyservice:${{ github.sha }}
+
+      - name: Build and push paymentservice
+        uses: docker/build-push-action@v5
+        with:
+          context: ./src/paymentservice
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/paymentservice:${{ github.sha }}
+
+      - name: Build and push shippingservice
+        uses: docker/build-push-action@v5
+        with:
+          context: ./src/shippingservice
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/shippingservice:${{ github.sha }}
+
+      - name: Build and push emailservice
+        uses: docker/build-push-action@v5
+        with:
+          context: ./src/emailservice
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/emailservice:${{ github.sha }}
+
+      - name: Build and push checkoutservice
+        uses: docker/build-push-action@v5
+        with:
+          context: ./src/checkoutservice
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/checkoutservice:${{ github.sha }}
+
+      - name: Build and push recommendationservice
+        uses: docker/build-push-action@v5
+        with:
+          context: ./src/recommendationservice
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/recommendationservice:${{ github.sha }}
+
+      - name: Build and push adservice
+        uses: docker/build-push-action@v5
+        with:
+          context: ./src/adservice
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/adservice:${{ github.sha }}
