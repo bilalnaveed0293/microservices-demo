@@ -27,7 +27,7 @@ jobs:
       - name: Build and push cartservice
         uses: docker/build-push-action@v5
         with:
-          context: ./src/cartservice
+          context: ./src/cartservice/src
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/cartservice:${{ github.sha }}
 
